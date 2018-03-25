@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello Thymeleaf!</title>
+</head>
+<body>
+    <p th:text="'Hello, ' + ${name} + '!'" />
+
+
+<ul th:each="user : ${result}">
+	<li th:text="${user.email}">Email 주소</li>
+	<li th:text="${user.name}">이름</li>
+</ul>    
+</body>
+</html>
