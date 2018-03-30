@@ -1,4 +1,4 @@
-package com.gameland.steemstone;
+package com.gameland.steemstone.sample;
 
 import eu.bittrade.libs.steemj.base.models.SignedBlockHeader;
 import eu.bittrade.libs.steemj.communication.BlockAppliedCallback;

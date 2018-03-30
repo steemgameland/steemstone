@@ -60,6 +60,9 @@ public class SteemApi {
 	 */
 	private Properties loadProp(String path) throws IOException {
 	    InputStream inputStream = getClass().getResourceAsStream(path);
+	    if(inputStream == null){
+	    	throw new IOException();
+	    }
 	    Properties properties = new Properties();
 	    properties.load(inputStream);
 	    inputStream.close();
@@ -75,7 +78,7 @@ public class SteemApi {
 		Properties properties = new Properties();
 		
 		try{
-			properties = loadProp("/steem.properties");
+			properties = loadProp("/properties/steem.properties");
 			properties.list(System.out);
 			
 		}catch(IOException e){
@@ -85,16 +88,9 @@ public class SteemApi {
 			logger.error("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+==+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
 			e.printStackTrace();
 			return;
-		}catch(Exception e){
-			logger.error("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+==+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
-			logger.error("fail to load steem.properties file...!!!");
-			logger.error("You have to make steem.properties file in src/main/resources/properties/");
-			logger.error("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+==+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
-			e.printStackTrace();
-			return;
 		}
 		
-		accountName = properties.getProperty("gameland.name");
+		accountName = properties.getProperty("account.name");
 		defaultAccount = new AccountName(accountName);
 		
 		SteemJConfig steemJConfig = SteemJConfig.getInstance();
@@ -102,9 +98,9 @@ public class SteemApi {
 		steemJConfig.setDefaultAccount(defaultAccount);
 		
 	    List<ImmutablePair<PrivateKeyType, String>> privateKeys = new ArrayList<>();
-	    privateKeys.add(new ImmutablePair<>(PrivateKeyType.POSTING, (String)properties.get("gameland.posting")));
-	    privateKeys.add(new ImmutablePair<>(PrivateKeyType.ACTIVE, (String)properties.get("gameland.active")));
-	    privateKeys.add(new ImmutablePair<>(PrivateKeyType.MEMO, (String)properties.get("gameland.memo")));
+	    privateKeys.add(new ImmutablePair<>(PrivateKeyType.POSTING, (String)properties.get("account.posting")));
+	    privateKeys.add(new ImmutablePair<>(PrivateKeyType.ACTIVE, (String)properties.get("account.active")));
+	    privateKeys.add(new ImmutablePair<>(PrivateKeyType.MEMO, (String)properties.get("account.memo")));
 	
 	    steemJConfig.getPrivateKeyStorage().addAccount(steemJConfig.getDefaultAccount(), privateKeys);
 	}
