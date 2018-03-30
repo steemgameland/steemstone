@@ -19,8 +19,6 @@ public class SteemApi {
 
 	private static final Logger logger = LoggerFactory.getLogger(Constants.class);
 	
-	// Steem Properties
-//	private Properties properties;
 	// default response timeout
 	private final int RESPONSE_TIMEOUT = 60000;
 	
@@ -81,7 +79,17 @@ public class SteemApi {
 			properties.list(System.out);
 			
 		}catch(IOException e){
-			logger.error("fail to load properties file...");
+			logger.error("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+==+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
+			logger.error("fail to load steem.properties file...!!!");
+			logger.error("You have to make steem.properties file in src/main/resources/properties/");
+			logger.error("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+==+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
+			e.printStackTrace();
+			return;
+		}catch(Exception e){
+			logger.error("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+==+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
+			logger.error("fail to load steem.properties file...!!!");
+			logger.error("You have to make steem.properties file in src/main/resources/properties/");
+			logger.error("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+==+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
 			e.printStackTrace();
 			return;
 		}
