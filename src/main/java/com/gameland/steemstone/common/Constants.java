@@ -1,4 +1,4 @@
-package com.gameland.steemstone;
+package com.gameland.steemstone.common;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,5 +18,5 @@ import eu.bittrade.libs.steemj.enums.PrivateKeyType;
 public class Constants {
 	private static final Logger logger = LoggerFactory.getLogger(Constants.class);
 	
-	
+	public static final String STEEM_PROPERTIES = "/properties/steem.properties";
 }
