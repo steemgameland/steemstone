@@ -40,10 +40,36 @@ The unit and the magic deck are listed sequentially, and the battle between the 
 ___
 ## Components
 ### Back-End
-It consists of Spring / SteemJ.
+
+#### Framework
+	springBoot(Version 1.5.7)
+
+#### Dependencies
+	compile('org.springframework.boot:spring-boot-starter-mobile')
+	compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.1')
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.session:spring-session')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-web-services')
+	compile('com.googlecode.json-simple:json-simple:1.1.1')
+	compile group: 'org.json', name: 'json', version: '20090211'
+	compile('com.google.code.gson:gson:2.7')
+	compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.1.1'
+	compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.0'
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+	compile group: 'eu.bittrade.libs', name: 'steemj-core', version: '0.4.3'
+	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.springframework.security:spring-security-test')
+	
+
+
 
 
 ### Front-End
+	ReactJs(Version XX)
+	
 It consists of a separate web page.
 You can check the current faction information and check the battle results.
 SteemConnect will work with SteepConnect in a separate page.
