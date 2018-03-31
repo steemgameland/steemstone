@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.gameland.steemstone.Constants;
-import com.gameland.steemstone.SteemApi;
+import com.gameland.steemstone.common.Constants;
+import com.gameland.steemstone.common.SteemApi;
 import com.gameland.steemstone.services.DbMapper;
 import com.gameland.steemstone.services.DbService;
 import com.gameland.steemstone.vos.CustomerInfoVo;
