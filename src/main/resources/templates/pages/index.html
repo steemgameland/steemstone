@@ -8,9 +8,19 @@
     <p th:text="'Hello, ' + ${name} + '!'" />
 
 
-<ul th:each="user : ${result}">
-	<li th:text="${user.email}">Email 주소</li>
-	<li th:text="${user.name}">이름</li>
+<ul th:each="unit : ${result}">
+	<li th:text="${unit.code}">Code</li>
+	<li th:text="${unit.name}">Name</li>
+	<li th:text="${unit.kind}">Kind</li>
+	<li th:text="${unit.level}">Level</li>
+	<li th:text="${unit.price}">Price</li>
+	<li th:text="${unit.power}">Power</li>
+	<li th:text="${unit.life}">Life</li>
+	<!-- <li th:text="${unit.range}">Range</li> -->
+	<li th:text="${unit.bodytype}">Bodytype</li>
+	<li th:text="${unit.attacktype}">Attachtype</li>
+	<li th:text="${unit.splash}">Splash</li>
+	<li th:text="${unit.special}">Special</li>
 </ul>    
 </body>
 </html>
