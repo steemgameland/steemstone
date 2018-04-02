@@ -2,13 +2,11 @@ package com.gameland.steemstone.schedulers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.gameland.steemstone.enums.Camp;
 import com.gameland.steemstone.interfaces.SteemOrder;
-import com.gameland.steemstone.services.DbService;
 
 @Component
 public class SteemScheduler {
@@ -23,7 +21,7 @@ public class SteemScheduler {
 		logger.info("chkVoter end!!************************");
 	}
 	
-	@Scheduled(cron = "7 17 * * *")
+	@Scheduled(cron = "*/10 * * * * *")
 	public void crtHumanPosting(){
 		logger.info("crtPosting start!!************************");
 		SteemOrder steemOrder = new SteemOrder();
@@ -31,7 +29,7 @@ public class SteemScheduler {
 		logger.info("crtPosting end!!************************");
 	}
 	
-	@Scheduled(cron = "11 17 * * *")
+	@Scheduled(cron = "*/20 * * * * *")
 	public void crtOrcPosting(){
 		logger.info("crtPosting start!!************************");
 		SteemOrder steemOrder = new SteemOrder();

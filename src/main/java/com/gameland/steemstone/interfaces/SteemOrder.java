@@ -41,6 +41,7 @@ public class SteemOrder implements IOrder{
 		PostingVo vo = new PostingVo();
 		vo.setClosed("N");
 		vo.setPayment("N");
+		vo.setInputDte("");
 		
 		if(camp == Camp.ORC){
 			// ORC Camp
