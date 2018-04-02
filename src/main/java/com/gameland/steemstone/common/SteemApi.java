@@ -1,19 +1,10 @@
 package com.gameland.steemstone.common;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-
-import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import eu.bittrade.libs.steemj.SteemJ;
-import eu.bittrade.libs.steemj.base.models.AccountName;
 import eu.bittrade.libs.steemj.configuration.SteemJConfig;
-import eu.bittrade.libs.steemj.enums.PrivateKeyType;
 
 public class SteemApi {
 
@@ -23,9 +14,9 @@ public class SteemApi {
 	private final int RESPONSE_TIMEOUT = 60000;
 	
 	// Global SteemJ Class
-	private static SteemJ steemj;
+	private SteemJ steemj;
 	
-	public static SteemJ getSteemJ(){
+	public SteemJ getSteemJ(){
 		return steemj;
 	}
 	
@@ -35,6 +26,7 @@ public class SteemApi {
 	private SteemApi(){
 	    try{
 	    	setConfig();
+	    	logger.info("create steemj instance... ");
 	    	steemj = new SteemJ();
 		}catch(Exception e){
 			logger.error("Constants Singletone contruction error...");
@@ -48,7 +40,7 @@ public class SteemApi {
 	private void setConfig(){
 		logger.info("setconfig....");
 		
-		SteemAccount account = new SteemAccount();
+		SteemAccount account = SteemAccount.getInstance();
 		
 		SteemJConfig steemJConfig = SteemJConfig.getInstance();
 		steemJConfig.setResponseTimeout(RESPONSE_TIMEOUT);
@@ -67,7 +59,6 @@ public class SteemApi {
 	 * Get Singleton instance
 	 */
 	public static SteemApi getInstance(){
-		logger.info("create steemj instance... ");
 		return Singleton.steemApi;
 	}
 }

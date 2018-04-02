@@ -4,112 +4,55 @@
 <mapper namespace="com.gameland.steemstone.services.DbMapper">
 
 <!-- Test Query -->
-    <select id="getDual" resultType="DemoVo" >
-        select code, name from steemstonemagic
+    <select id="getDual" resultType="UnitVo" >
+        select code, name, kind, level, price, power, life, bodytype, attacktype, splash, special from unit
     </select>
     
 <!-- Get Device Info -->
-    <select id="getDevice" resultType="UserInfoVo" parameterType="UserInfoVo">
+    <select id="getPosting" resultType="PostingVo" parameterType="PostingVo">
         select user_id, db_name, factid, mac_addr from sign_user
         where
         mac_addr = #{mac_addr}
     </select>
 
 <!-- Get User Info -->
-    <select id="getUserInfo" resultType="UserInfoVo" parameterType="UserInfoVo">
+    <select id="lstUnit" resultType="UnitVo" parameterType="UnitVo">
         select recseq from sign_user
         where
         db_name = #{db_name}
         and user_id = #{user_id}
         and factid = #{factid}
     </select>
-        
-<!--Get Customer List -->
-	<select id="getCustomer" resultType="CustomerInfoVo" parameterType="UserInfoVo">
-		select
-			cust_id,
-			cust_nm,
-			recseq
-		from
-			sign_customer
-		where
-			db_name = #{db_name}
-			and factid = #{factid}
-		order by
-			cust_nm
-	</select>
-	
-<!-- Check Exist Sign -->
-<!-- <![CDATA[ ]]> 이 부호는 Xml에 <> 요 부호와 동일한 모습을 하고 있어서 옆의 명령어로 감싸주면 작성가능하다.-->
-	<select id="crtSignInfo" resultType="SignInfoVo">
-        insert into sign_info(
-        	db_name,
-        	subfolder_name,
-        	file_name,
-        	cust_id,
-        	cust_nm,
-        	sign_dt,
-        	user_id,
-        	gubun,
-        	factid,
-        	kind
-        )
-        values(
-        	#{db_name},
-        	#{subfolder_name},
-        	#{file_name},
-        	#{cust_id},
-        	#{cust_nm},
-        	#{sign_dt},
-        	#{user_id},
-        	#{gubun},
-        	#{factid},
-        	#{kind}
-        )
-			
-    </select>
-    
-<!-- Inquiry Sign Info -->
-    <select id="getSignInfo" resultType="SignInfoVo">
-        select
-			a.recseq,
-			a.subseq,
-			a.sub_folder_name,
-			a.file_name,
-			a.db_name,
-			a.table_name,
-			a.factid,
-			a.ftp_addr,
-			a.ftp_id,
-			a.ftp_pwd,
-			a.reckchk,
-			a.recwdt,
-			a.recact,
-			a.recuno,
-			a.user_id
-		from sign_info a,
-			signdevice b
-		where
-		    a.user_id = b.user_id
-		    and a.recseq = #{recseq}
-    </select>
-    
-<!-- select Config -->
-    <select id="getConfig"  resultType="SignInfoVo" parameterType="SignInfoVo">
-    	select
-    		*
-    	from
-    		sign_config
-    	where
-    		db_name = #{db_name}
-    		and factid = #{factid}
-    </select>
-    
+
 <!-- Insert Device Info -->
-    <insert id="putDevice" parameterType="UserInfoVo">
+    <insert id="putVoterVo" parameterType="VoterVo">
     	update sign_user set 
     		mac_addr = #{mac_addr}
    		where
    			recseq = #{recseq}
+    </insert>
+    
+    <!-- Insert Deck -->
+    <insert id="crtDeck" parameterType="DeckVo">
+    	insert into deck
+			(link, user, position, card, type)
+		values
+			(#{link},
+			#{user},
+			#{position},
+			#{card},
+			#{type}
+			)
+    </insert>
+    
+    <!-- insert posting -->
+    <insert id="crtPosting" parameterType="PostingVo">
+	    insert into posting
+			(permlink, kind, closed, payment)
+		values
+			(#{permlink}, 
+			#{kind}, 
+			#{closed}, 
+			#{payment});
     </insert>
 </mapper>

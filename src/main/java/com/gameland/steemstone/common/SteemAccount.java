@@ -36,7 +36,22 @@ public class SteemAccount {
 	}
 
 	public SteemAccount(){
+		logger.info("create accountname instance... ");
 		setSteemAccount();
+	}
+	
+	/**
+	 * Set Singleton
+	 */
+	private static class Singleton{
+		private static final SteemAccount account = new SteemAccount();
+	}
+	
+	/**
+	 * Get Singleton instance
+	 */
+	public static SteemAccount getInstance(){
+		return Singleton.account;
 	}
 	
 	private void setSteemAccount(){
@@ -47,7 +62,7 @@ public class SteemAccount {
 			Properties properties = commfunc.loadProp(Constants.STEEM_PROPERTIES);
 			if(properties == null) throw new IOException();
 			
-			properties.list(System.out);
+//			properties.list(System.out);
 			
 			// Get Private Keys
 			List<ImmutablePair<PrivateKeyType, String>> keys = new ArrayList<>();
